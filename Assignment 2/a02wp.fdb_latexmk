@@ -1,0 +1,16 @@
+# Fdb version 3
+["pdflatex"] 1401408584 "a02wp.tex" "a02wp.pdf" "a02wp" 1401408584
+  "/etc/texmf/web2c/texmf.cnf" 1382053841 475 c0e671620eb5563b2130f56340a5fde8 ""
+  "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1136768653 1288 655e228510b4c2a1abe905c368440826 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/article.cls" 1254151887 20571 b8bd218bf2e18b4f5817ee643cd9c515 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo" 1254151887 9053 a28d9b3c915d12545f3d5e7c4986be20 ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1392645748 31083 1dfd8bf685ce0009c40532fedf8a7c53 ""
+  "/usr/share/texmf/web2c/texmf.cnf" 1392645748 31083 1dfd8bf685ce0009c40532fedf8a7c53 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1396717259 722334 0ff44413cde58698ba51221ce592f961 ""
+  "a02wp.aux" 1401408446 8 a94a2480d3289e625eea47cd1b285758 ""
+  "a02wp.tex" 1401408562 5501 3c18a5cfbe4454798b982317841ebf99 ""
+  "fullpage.sty" 0 -1 0 ""
+  (generated)
+  "a02wp.pdf"
+  "a02wp.log"

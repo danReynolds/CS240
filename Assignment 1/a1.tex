@@ -1,0 +1,358 @@
+\documentclass[12pt]{article}
+
+\usepackage{algo,fullpage,url,amssymb,epsfig,color,xspace,enumerate, amsmath}
+\usepackage[pdftitle={CS 240 Assignment 1},%
+pdfsubject={University of Waterloo, CS 240, Spring 2014},%
+pdfauthor={Romain Lebreton}]{hyperref}
+
+\renewcommand{\thesubsection}{Problem \arabic{subsection}}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\begin{document}
+
+\begin{center}
+{\Large\bf University of Waterloo}\\
+\vspace{3mm}
+{\Large\bf CS240 - Spring 2014}\\
+\vspace{2mm}
+{\Large\bf Assignment 1}\\
+\vspace{3mm}
+\textbf{Due Date: Wednesday May 21 at 09:15am}
+\end{center}
+
+\definecolor{care}{rgb}{0,0,0}
+\def\question#1{\item[\bf #1.]}
+\def\part#1{\item[\bf #1)]}
+\newcommand{\pc}[1]{\mbox{\textbf{#1}}} % pseudocode
+
+Please read
+\url{http://www.student.cs.uwaterloo.ca/~cs240/s14/guidelines.pdf}
+for guidelines on submission.  
+Problems 1 -- 6 are written
+problems; submit your solutions electronically as a PDF with file name {\tt a01wp.pdf} using MarkUs. We will also accept individual question files named {\tt a01q1w.pdf}, {\tt a01q2w.pdf}$, \dots,$ {\tt a01q6w.pdf} if you wish to submit questions as you complete them.
+
+There are 78 marks available; the assignment will be marked out of 74.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{[4+4+4+4+4=20 marks]}
+Provide a complete proof of the following statements from first principles
+(i.e., using the original definitions of order notation).  All logarithms
+are natural logarithms: $\log = \ln$.
+
+% Question $(e)$ is a bonus question.
+
+\begin{enumerate}
+\item 
+  $n^3 - 21n^2 +100 \in O(n^3)$\\
+  \begin{align*}
+    &n^3 - 21n^2 +100 \in O(n^3) \leq cn^3\\
+    &n^3 + 100 \geq n^3 - 21n^2 + 100\\
+    &n^3 + 100 \leq cn^3\text{,     let c = 2}\\
+    &100 \leq n^3 \implies \sqrt[3]{100} \leq n\\
+    &n_{0} = \sqrt[3]{100}, c = 2\\
+    &\therefore n^3 - 21n^2 +100 \in O(n^3)
+  \end{align*}
+\item $ (n + 10)^3 \in \Theta(n^3)$\\
+  \begin{align*}
+    &\text{ Prove: } (n+10)^3 \in O(n^3)\\
+    &(n+10)^3 \leq cn^3\\
+    &n^3 + 30n^2 + 300n + 1000 \leq cn^3\\
+    &\text{let c = 4}\\
+    &n^3 \leq n^3\\
+    &30n^2 \leq n^3 \implies n \geq 30\\
+    &300n \leq n^3 \implies n \geq \sqrt(300)\\
+    &1000 \leq n^3 \implies n \geq \sqrt[3](1000)\\
+    &n_{0} = 30, c = 4\\
+    &\therefore (n+10)^3 \in O({n^3})  \\
+    \\
+    &\text{ Prove: } (n+10)^3 \in \Omega(n^3)\\
+    &(n+10)^3 \geq cn^3\\
+    &n+10 \geq c_1n \text{ where } c_1 = c^{1/3}\\
+    &n_{0} = 1, c_1 = 1\\
+    &\therefore (n+10)^3 \in \Omega({n^3})  \\
+    \\
+    \therefore (n+10)^3 \in \theta({n^3})
+  \end{align*}
+\item
+  $1000n \in o(n \log n)$\\
+  \begin{align*}
+    &1000n \leq cn\log(n)\\
+    &1000 \leq c\log(n)\\
+    &\frac{1000}{c} \leq log(n)\\
+    &n \geq e^{\frac{1000}{c}}\\
+    &n_{0} = e^{\frac{1000}{c}}\text{   } \ \forall c > 0\\
+    &\therefore (n+10)^3 \in o(n \log n)\\
+  \end{align*}
+\item $n ! \in o(n^{n})$ where $n ! = \prod_{i=1}^n i$\\
+  \begin{align*}
+    &n ! = n(n-1)...(1)\\
+    &n(n-1)...(1) \leq n^{n-1}\\
+    &n^{n-1} \leq cn^n\\
+    &1 \leq cn\\
+    &n_{0} \geq \frac{1}{c}\text{   } \ \forall c > 0\\
+    &\therefore n ! \in o(n^{n})
+  \end{align*}
+\item Bonus question : Let $H(n) = \sum_{i=1}^n 1/i$.
+  Prove that $H(n) \in \omega (1) $.\\
+  \begin{align*}
+    &Prove: \sum_{i=1}^{n}\frac{1}{i} \geq c(1)\\
+    &\sum_{i=1}^{n}\frac{1}{i} = \frac{1}{1} + \frac{1}{2} + (\frac{1}{3} + \frac{1}{4}) + (\frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8}) \geq 1 + \sum_{i=1}^{log_2(n)}\frac{1}{2}\\
+    &\implies 1 + \frac{1}{2}log_2(n) \geq c\\
+    &\implies \frac{1}{2}log_2(n) \geq c\\
+    &\implies n \geq 2^{2c}\\
+    &\implies \exists \  n_0 > 0 \cdot \  \ \forall c > 0 \  n_{0} \geq 2^{2c} \text{   } \ \forall n > n_0\\
+    &\therefore H(n) \in \omega (1)
+  \end{align*}
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{[4+4+4=12 marks]}
+For each pair of the following functions, fill in the correct asymptotic
+notation among $\Theta$, $o$, and $\omega$ in the statement $f(n)\in
+\sqcup(g(n))$.  Provide a brief justification of your answers.  In your
+justification you may use any relationship or technique that is described
+in class.
+\begin{enumerate}[(a)]
+\item $f(n) = n^3(5+2\cos{2n})$ versus $g(n)=3n^2+4n^3+5n$\\
+\begin{align*}
+  &2cos(2\pi) \text{ is bounded by } -2 \text{ and } 2 \implies n^3(5+2\cos{2n}) \text{ is bounded by }3n^3 \text { and } 7n^3\\
+  &\text{let $c_1$ = 3 and $c_2$ = 7}\\
+  &\therefore f(n) \in \theta(n^3)\\
+  \\
+  &\theta(3n^2 + 4n^3 + 5n) = \theta(4n^3) \text{ by Max Rule }\\
+  &\theta(4n^3) = \theta(n^3) \implies g(n) \in \theta{n^3}\\
+  &\therefore f(n) \in \theta g(n)
+\end{align*}
+\item $f(n) = n (\log n)^{3}$ versus $g(n) = n^{2}$. \emph{Hint:} Use L'Hopital's rule.\\
+\begin{align*}
+  &lim_{n \rightarrow \infty} \frac{n(log_n)^3}{n^2} \rightarrow \infty \text{ as n } \rightarrow \infty\\
+  &= lim_{n \rightarrow \infty} \frac{3n(log_n)^2\frac{1}{n}}{2n}\\
+  &= lim_{n \rightarrow \infty} \frac{2(logn)\frac{1}{n}}{2n}\\
+  &= lim_{n \rightarrow \infty} \frac{2}{4n^2} \rightarrow 0 \text{ as n } \rightarrow 0\\
+  &\therefore f(n) \in o(g(n))
+\end{align*}
+\item $f(n) = n^{0.01}$ versus $g(n) = (\log n)^{2}$\\
+\\
+\begin{align*}
+  &lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \rightarrow \infty \text{ as n } \rightarrow \infty\\
+  &= lim_{n \rightarrow \infty} \frac{n^{0.01}}{(log(n)^2)}\\
+  &= lim_{n \rightarrow \infty} \frac{0.01n^{-0.99}}{2(log(n)\frac{1}{n})}\\
+  &= lim_{n \rightarrow \infty} \frac{0.01n^{0.01}}{2log(n)}\\
+  &= lim_{n \rightarrow \infty} \frac{0.0001n^{-0.99}}{\frac{2}{n}}\\
+  &= lim_{n \rightarrow \infty} \frac{0.0001n^{0.01}}{2} \rightarrow \infty \text{  as n } \rightarrow \infty\\
+\end{align*}
+\end{enumerate}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{[4+4+4+4+4=20 marks]}
+Prove or disprove each of the following statements.  To prove a
+statement, you should provide a formal proof that is based on the
+definitions of the order notations.  To disprove a statement, you can
+either provide a counter example and explain it or provide a formal proof.
+All functions are positive functions.
+\begin{enumerate}[(a)]
+\item $f(n) \not \in \omega(g(n)) \Rightarrow f(n) \in O(g(n))$\\
+\begin{align*}
+  &!(\ \forall c > 0 \  \exists \  n_0 > 0 \cdot 0 \leq cg(n) \leq f(n) \  \ \forall n > n_0) \text{ and } g(n) > 0 \text{ and } f(n) > 0\\
+  &\implies \exists \  c > 0 \  \cdot \  \ \forall n_0 > 0 \  \exists \  n > n_0 \cdot \  (c(g(n)) < 0 \text{ or } c(g(n)) > f(n)) \text{ and } g(n) > 0 \text{ and } f(n) > 0\\
+  &\implies \exists \  c > 0 \  \cdot \  \ \forall n_0 > 0 \  \exists \  n > n_0 \cdot \  (c(g(n)) > f(n) > 0)\\
+  &\implies \exists \  c, n_0 > 0 \  \cdot \  (c(g(n)) > f(n) > 0 \text{  }\ \forall n > n_0)\\
+  &\implies f(n) \in O{(g(n))}
+\end{align*}
+\item $f(n) \in O(g(n)) \Rightarrow \exists \  c>0 \ \forall n\in \mathbb{N}, f(n) < c g(n)$\\
+\begin{align*}
+  &f(n) \leq f(n_0) \ \forall n \leq n_0\\
+  &f(n) \leq cg(n) \ \forall n \geq n_0\\
+  &c(g(n)) + f(n_0) \geq f(n) \ \forall n < n_0\\
+  &\text{ since } f(n) < f(n_0) < \frac{g(n)f(n_0)}{g(0)} \ \forall n < n_0\\
+  &c(g(n)) + \frac{g(n)f(n_0)}{g(0)} \geq f(n) \ \forall n < n_0\\
+  &\implies g(n)(c + \frac{f(n_0)}{g(0)}) \geq f(n) \ \forall n < n_0\\
+  &\text{ let } c_1 = c + \frac{f(n_0)}{g(0)}\\
+  &f(n) \leq c_1(g(n)) \ \forall n <   n_0 \text{ and } f(n) \leq cg(n) \ \forall n \geq n_0 \implies f(n) \leq c_1g(n) \ \forall n > 0\\
+  \\
+  &\therefore f(n) \in O(g(n)) \Rightarrow \exists \  c>0 \ \forall n\in \mathbb{N}, f(n) < c g(n)
+\end{align*}
+\item $f(n)\in \Theta(g(n))\Rightarrow 2^{f(n)} \in \Theta(2^{g(n)})$\\
+  \begin{align*}
+    &Prove : 2^{f(n)} \in O({2^{g(n)}})\\
+    &\exists \  c_1, n_0 > 0 \cdot 0 \leq f(n) \leq c_1g(n) \  \ \forall n \geq n_0\\
+    &\implies 0 \leq 2^{f(n)} \leq 2^{c_1g(n)} \  \ \forall n \geq n_0\\
+    &\implies 0 \leq 2^{f(n)} \leq 2^{(c_1-1)g(n_0)}2^{g(n)} \  \ \forall n \geq n_0\\
+    &\text{ let } c_2 = 2^{(c_1-1)g(n_0)}\\
+    &\implies 0 \leq 2^{f(n)} \leq c_22^{g(n)} \  \ \forall n \geq n_0\\
+    &\therefore 2^{f(n)} \in O({2^{g(n)}})\\
+    \\
+    &Prove : 2^{f(n)} \in \Omega({2^{g(n)}})\\
+    &\exists \  c_1, n_0 > 0 \cdot 0 \leq c_1g(n) \leq f(n)  \  \ \forall n \geq n_0 \\
+    &\implies 0 \leq 2^{c_1g(n)} \leq 2^{f(n)} \  \ \forall n \geq n_0\\
+    &\implies 0 \leq 2^{(c_1-1)g(n_0)}2^{g(n)} \leq 2^{f(n)} \  \ \forall n \geq n_0\\
+    &\text{ let } c_2 = 2^{(c_1-1)g(n_0)}\\
+    &\implies 0 \leq c_22^{g(n)} \leq 2^{f(n)} \  \ \forall n \geq n_0\\
+    \\
+    \therefore 2^{f(n)} \in \theta({2^{g(n)}})\\
+  \end{align*}
+\item $f(n)\in \Theta(g(n))$ and 
+         $h(n)\in \Theta(g(n)) \Rightarrow \frac{f(n)}{h(n)}\in \Theta(1)$\\
+  \begin{align*}
+    &Prove: \frac{f(n)}{h(n)} \in O(1)\\
+    &\exists \  c_1, n_0 > 0 \cdot 0 \leq f(n) \leq c_1g(n) \  \ \forall n \geq n_0 \\
+    &\exists \  c_1, n_1 > 0 \cdot 0 \leq h(n) \leq c_2g(n) \  \ \forall n \geq n_1 \\
+    \\
+    &\frac{f(n)}{h(n)} \leq \frac{c_1g(n)}{c_2g(n)} \leq c_3(1)\\
+    &\therefore \frac{f(n)}{h(n)} \in O(1)\\
+    \\
+    &Prove: \frac{f(n)}{h(n)} \in \Omega(1)\\
+    &\exists \  c_1, n_0 > 0 \cdot 0 \leq f(n) \geq c_1g(n) \  \ \forall n \geq n_0 \\
+    &\exists \  c_1, n_1 > 0 \cdot 0 \leq h(n) \geq c_2g(n) \  \ \forall n \geq n_1 \\
+    \\
+    &\frac{f(n)}{h(n)} \geq \frac{c_1g(n)}{c_2g(n)} \geq c_3(1)\\
+    &\therefore \frac{f(n)}{h(n)} \in \Omega(1)\\
+    \\
+    \therefore \frac{f(n)}{h(n)} \in \theta(1)\\
+  \end{align*}
+\item $\min(f(n),g(n)) \in \Theta\left (\frac{f(n)g(n)}{f(n)+g(n)}\right)$\\
+\begin{align*}
+  &\text{Prove: } min(f(n), g(n)) \in O(\frac{f(n)g(n)}{f(n)+g(n)})\\
+  &min(f(x),g(x)) = \frac{f(x) + g(x) - |f(x) - g(x)|}{2}\\
+  &\implies \exists \  c, x_0 > 0 \cdot \  \frac{f(x) + g(x) - |f(x) - g(x)|}{2} \leq c \frac{f(x)g(x)}{f(x) + g(x)} \ \forall x \geq x_0\\
+\end{align*}
+\begin{align*}
+  &\text{Case: } f(x) > g(x)\\
+  &\implies g(x) \leq \frac{cf(x)g(x)}{f(x) + g(x)} \ \forall x \geq x_0\\
+  &\implies 1 \leq \frac{cf(x)}{f(x) + g(x)} \ \forall x \geq x_0\\
+  &\implies f(x) + g(x) \leq cf(x) \ \forall x \geq x_0\\
+  &\implies 2f(x) \leq cf(x) \ \forall x \geq x_0\\
+  &\implies 2 \leq c \ \forall x \geq x_0\\
+  &\text{ where } c = 3 \text{ and } x_0 = 1
+\end{align*}
+\begin{align*}
+  &\text{Case: } f(x) < g(x)\\
+  &\implies f(x) \leq \frac{cf(x)g(x)}{f(x) + g(x)} \ \forall x \geq x_0\\
+  &\implies 1 \leq \frac{cg(x)}{f(x) + g(x)} \ \forall x \geq x_0\\
+  &\implies f(x) + g(x) \leq cg(x) \ \forall x \geq x_0\\
+  &\implies 2g(x) \leq cg(x) \ \forall x \geq x_0\\
+  &\implies 2 \leq c \ \forall x \geq x_0\\
+  &\text{ where } c = 3 \text{ and } x_0 = 1\\
+  &\therefore min(f(n), g(n)) \in O(\frac{f(n)g(n)}{f(n)+g(n)})
+\end{align*}
+\begin{align*}
+  &\text{Prove: } min(f(n), g(n)) \in \Omega(\frac{f(n)g(n)}{f(n)+g(n)})\\
+  &min(f(x),g(x)) = \frac{f(x) + g(x) - |f(x) - g(x)|}{2}\\
+  &\implies \exists \  c, x_0 > 0 \cdot \  \frac{f(x) + g(x) - |f(x) - g(x)|}{2} \geq c \frac{f(x)g(x)}{f(x) + g(x)} \ \forall x \geq x_0\\
+\end{align*}
+\begin{align*}
+  &\text{Case: } f(x) > g(x)\\
+  &\implies g(x) \geq \frac{cf(x)g(x)}{f(x) + g(x)} \ \forall x \geq x_0\\
+  &\implies 1 \geq \frac{cf(x)}{f(x) + g(x)} \ \forall x \geq x_0\\
+  &\implies f(x) + g(x) \leq cf(x) \ \forall x \geq x_0\\
+  &\implies 2f(x) \geq cf(x) \ \forall x \geq x_0\\
+  &\implies 2 \geq c \ \forall x \geq x_0\\
+  &\text{ where } c = 1 \text{ and } x_0 = 1
+\end{align*}
+\begin{align*}
+  &\text{Case: } f(x) < g(x)\\
+  &\implies f(x) \geq \frac{cf(x)g(x)}{f(x) + g(x)} \ \forall x \geq x_0\\
+  &\implies 1 \geq \frac{cg(x)}{f(x) + g(x)} \ \forall x \geq x_0\\
+  &\implies f(x) + g(x) \geq cg(x) \ \forall x \geq x_0\\
+  &\implies 2g(x) \geq cg(x) \ \forall x \geq x_0\\
+  &\implies 2 \geq c \ \forall x \geq x_0\\
+  &\text{ where } c = 3 \text{ and } x_0 = 1\\
+  &\therefore min(f(n), g(n)) \in \Omega(\frac{f(n)g(n)}{f(n)+g(n)})
+\end{align*}
+$\therefore min(f(n), g(n)) \in \Theta(\frac{f(n)g(n)}{f(n)+g(n)})$
+  \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{[4+4+2=10 marks]}
+%% Suppose $n$ is a power of two and 
+Let $\theta$ be either $2$ or $3$. 
+%a parameter in the range $2 \leq \theta \leq 3$.  
+Consider the sum
+$$f(n) := \sum_{i=0}^{\log_2 n} 4^i \left \lfloor \frac{n}{2^i} \right \rfloor ^{\theta}.$$
+\begin{enumerate}[(a)]
+\item Assume that $n$ is a power of two.\\
+\\
+Give an exact closed form for $f(n)$ in terms of $n$
+and $\theta$.\\{\em Hint:} Re-write the formula as a geometric series,
+and treat $\theta=2$ and $\theta=3$
+as separate cases.
+\begin{align*}
+  \theta = 2 \text{ case:}\\
+  & \sum_{i=0}^{log_2n} 4^i \floor{\frac{n}{2^i}}^\theta\\
+  &= \sum_{i=0}^{log_2n} 2^{2i} \frac{n^\theta}{2^{(\theta)i}} \text{ The floor can be dropped because n is a power of 2}\\
+  &= \sum_{i=0}^{log_2n}n^\theta2^{2i-(\theta)i}\\
+  &\text{Since when }\theta = 2, r = 1\text{, use the geometric series formula:}\\
+  &\sum_{i=0}^{n-1}ar^i = na\\
+  &\implies \sum_{i=0}^{log_2n}n^\theta2^{2i-(\theta)i} = (log_2n + 1)n^\theta\\
+  \theta = 3 \text{ case:}\\
+  &\sum_{i=0}^{log_2n} 2^{2i-\theta(i)}n^\theta\\
+  &\text{Since when }\theta = 3, 0 < r < 1\text{, use the geometric series formula:}\\
+  &\sum_{i=0}^{n-1}ar^i = a\frac{1-r^n}{1-r}\\
+  &\implies \sum_{i=0}^{log_2n} 2^{2i-\theta(i)}n^\theta = n^\theta(1 - \frac{1 - (2^{2 - \theta})^{log_2n + 1}}{1 - 2^{2-\theta}})\\
+\end{align*}
+\item Now consider the function $g(n) := f(2^{\lceil \log_2 n\rceil})$, 
+defined for all positive $n$. Give simple bounds for $g(n)$
+using $\Theta$-notation. You should have two $\Theta$ bounds: 
+one for $\theta=2$ and one for $\theta = 3$.
+\item Deduce simple bounds on $f(n)$ using $\Theta$-notation.\\
+\\
+\begin{align*}
+\text{ when } \theta = 2\\
+&f(n) \in \theta (n^\theta(logn))\\
+\text{ when } \theta = 3\\
+&f(n) \in \theta (n^\theta(1 - \frac{1 - (2^{2 - \theta})^{log_2n + 1}}{1 - 2^{2-\theta}}))
+\end{align*}
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{[4+4=8 marks]}
+\begin{enumerate}[(a)]
+\item Prove that the following code fragment will always terminate.\\
+If s is even, then it will take 1 operation before s will become half its value. If s is always even, this will terminate after $log_2n$ operations, since the loop exists when s is less than 1. Alternatively, if s is odd, then it will take 2 operations before s will become half its value. if the division of s by 2 always resulted in an odd value, then it would take $2log_2$ operations to complete before s will be less than 1. In either case of s being an even or odd number, the program will terminate.
+\item Prove that its running time is $O(\log n)$.\\
+\\\\
+\text{Let c be a constant representing cost of executing up to 2 operations }\\ \text{two operations and T(n) be the total cost of arithmetic operations. }\\
+\begin{align*}
+&T(n) = \sum_{i=1}^n c\\
+&=clog_2n\\
+&\therefore T(n) \in \theta(log_2n)\\
+\end{align*}
+  \end{enumerate}
+\begin{verbatim}
+s := n  // n is an integer
+while (s>1)
+   if (s is even)
+      s := s/2
+   else
+      s := s+1
+\end{verbatim}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{[4+4=8 marks]}
+Consider the following (not necessarily the best) implementation of an algorithm that finds the largest element in the array. Give the best case (4 marks)
+and worst case (4 marks) running time of the function, using $\Theta$-notation. Justify your answer.
+\begin{verbatim}
+function max-element(A[1..n])
+    if n = 1 do
+        return A[1]
+    else if A[1] > max-element(A[2..n]) do
+        return A[1]
+    else return max-element(A[2..n])
+\end{verbatim}
+Best Case:
+$n = 1, O(n)$
+\\
+\\If the max is the first number, such as in [n..,3,2,1], then the program executes n return operations. 
+\\
+\\
+Worst Case:
+$n = [1,2,3,4], O(n^2)$
+\\
+\\The worst performance occurs when the largest element is to the far right. In this instance, the algorithm must run first 4, then 3, 2 and 1 times, each time removing an element from the beginning of the array. Let $T(n)$ model the total cost of the operations. Then the total operations executed in the worst case would be:\\
+\begin{align*}
+&T(n) \in \sum_{i=1}^n \sum_{j=i}^n \theta(1)\\
+&= \sum_{i=1}^n (n-i+1)\theta(1)\\
+&=\theta(1)\sum_{i=1}^n i\\
+&=\theta(1)\frac{(n+1)(n)}{2}\\
+&=\theta(1)\frac{n^2 + n}{2}\\
+&=\theta(n^2)
+\end{align*}
+\end{document}
