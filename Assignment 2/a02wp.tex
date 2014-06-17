@@ -69,7 +69,7 @@ for j = 1 to k do
 \newcounter{saveenum}
 \begin{enumerate}[(a)]
 \item Argue that this method necessarily produces the top $k$ results in order
-(hint: use induction on $k$).
+(hint: use induction on $k$).\\\\
 
 Base Case:\\\\
 For k = 1, we take the max element from A.Heap and print it. This is naturally the top result.\\
@@ -82,20 +82,26 @@ Then by induction, the heap algorithm produces the top k results in order.
 
 \item Assume that each server $S_i$ holds $m$ values in its heap. Give the time taken
 by $A$ in the code above to build the Heap. Do not forget to account for the time
-taken by the call to $S_i$.
+taken by the call to $S\_i$.\\
 
+Using the upper bound of size m for each delete from the $S\_i$.heap, we know  that the maximum operations would be $\log m$ by the definition provided in class. Each insert into A.heap would similarly have a maximum of $\log n$ operations, bounding up to an insertion into a size n heap each iteration. Let T(n) denote the time to run this algorithm for length n. Summing these over all values we get:
 
 \begin{align*}
-  &\sum_{i=1}^n \log_n + \log_m\\
-  &=n\log n + n\log m\\
+  T(n)=&\sum_{i=1}^n \log n + \log m\\
+  &=\theta(n\log n) + \theta(n\log m)\\
+  &\therefore T(n) \in \theta(n \log(nm))
 \end{align*}
 
 \item  Now give the time taken
 to produce the top $k$ results in the loop above in terms of $m$, $n$ and $k$.
 
+There are 3 constant time operations in the loop, the assignment of res, the printing of res and the evaluation of i
+as the server of origin of the res item above. These are represented each as $\theta(1)$ time. The loop does an insert and a delete from A.heap, which has $\log n$ operations in each case as discussed in class. The delete from the $S\_i$ heap of size m would have $\log m$ operations, bounding up to ignore the fact that the size of the heap is decreasing with each delete. Let T(k) represent the time to assemble the top k results. This results in the following:
+
 \begin{align*}
-  &\sum_{j=1}^k 1 + 1 + 2\log n + \log m\\
-  &= 2k + 2k\log n + k\log m\\
+  T(k)=&\sum_{j=1}^k \theta(1) + \theta(1) + \theta(1) + 2\log n + \log m\\
+  &= \theta(2k) + \theta(2k\log n) + \theta(k\log m)\\
+  &\therefore T(k) \in \theta(k\log (nm))
 \end{align*}
 \setcounter{saveenum}{\value{enumi}}
 \end{enumerate}
@@ -151,22 +157,34 @@ Then by induction, Marc's algorithm produces the top k results in order.
 \item Assume as before that each server $S_i$ holds $m$ results. Give the time taken in the worst
 case by $A$ in the code above to assemble its list of candidates in terms of $n$ and $k$. You may assume that $n\geq k$ where needed.
 
+In each loop iteration, there are 5 constant time operations. The assignment to res in combination with the delete from $S\_i$, since it is a sorted linked list, are two constant operations. The two comparisons in the first if statement, as well as the single comparison in the last if statement raise the total to 5 constant time operations. 
+
+Furthermore, each iteration i up until the list is filled with size k would take up to i swaps using the classical insertion sort insertion of one element into an already sorted array.
+
+Past the kth insertion, in the worst case, the first if statement will always be entered and there are an additional two constant time operations for every iteration from k+1 to n. The time complexity can therefore be expressed as the following:
+
 \begin{align*}
-  &\sum_{i=1}^n (1 + 1 + 1 + 1) + \sum_{i=1}^k i + \sum_{i=k+1}^n (1 + 1 + k)\\
-  &= 4n + \frac{k(k+1)}{2} + (n-k)(2 + k)\\
-  &= 4n + \frac{k^2}{2} + \frac{k}{2} + 2n + nk -2k - k^2\\
-  &= 6n - \frac{3k}{2} + nk - \frac{k^2}{2}\\
+  T(k)=&\sum_{i=1}^n (\theta(1) + \theta(1) + \theta(1) + \theta(1)) + \theta(1)) + \sum_{i=1}^k i + \sum_{i=k+1}^n (\theta(1) + \theta(1) + k)\\
+  &= \theta(5n) + \theta(\frac{k(k+1)}{2}) + \theta((n-k)(2 + k))\\
+  &= \theta(5n) + \theta(\frac{k^2}{2} + \frac{k}{2}) + \theta(2n + nk -2k - k^2)\\
+  &= \theta(7n) + \theta(\frac{3k}{2} + nk - \frac{k^2}{2})\\
+  &\therefore T(k) \in \theta(nk)
 \end{align*}
 
 \item  Now give the time taken
 to produce the top $k$ results in the loop above in terms of $m$, $n$ and $k$.
 
-\begin{align*}
-  &\sum_{j=1}^k 1 + 1 + 1 + 1 + k\\
-  & = 4k + k^2\\
-\end{align*}
+There are 9 constant time operations in each loop. The assignment of res and use of the max delete of the candidate list are each constant time operations. Printing res is an additional operation, as well as assigning i to be the server of origin, and assigning res once more to be the max of the sorted list, which is also a linked list like the candidate list.
 
+In addition to these operations, since the size of the sorted candidate list is always k-1 when the $K\_$InsertionSort is called, then the cost would be the 3 comparisons in the $K\_$InsertionSort followed by the max k operation classical insertion of the new element. This total can be expressed as the following:
+
+\begin{align*}
+  T(k)=&\sum_{j=1}^k \theta(9) + k\\
+  &= \theta(9k) + \theta(k^2)\\
+  &\therefore T(k) \in \theta(k^2)
+\end{align*}
 %n * [log n + log m]
+
 %n * [k]
 %k * [log n + log m]
 %k * [1 + k]
@@ -175,22 +193,44 @@ heap solution above, in the worst case?\\
 
 Comparing the algorithms and determining when Marc's algorithm performs better than the heap solution, we see that:
 
+Heap solution:
+
 \begin{align*}
-  &6n - \frac{3k}{2} + nk - \frac{k^2}{2} + 4k + k^2 < n\log m + n\log n + 2k + 2k\log n + k\log m\\
-  &6n + \frac{k}{2} + \frac{k^2}{2} + nk < n\log m + n\log n + 2k\log n + k\log m\\
-  &6(10^4) + \frac{k}{2} + \frac{k^2}{2} + (10^4)k < (10^4)\log (10^7) + (10^4)\log (10^4) + 2k\log (10^4) + k\log (10^7)
+  &\theta(n\log (nm)) + \theta(k\log (nm)\\
+  &=\theta(n\log(nm))
 \end{align*}
 
-Solving this inequality produces a result of -19976 $<$ k $<$ 5. Therefore for values of O(5), Marc's solution is faster.
+Marc's solution:
+
+\begin{align*}
+  &\theta(k^2) + \theta(nk)\\
+  &=\theta(nk)
+\end{align*}
+
+% \begin{align*}
+%   &6n - \frac{3k}{2} + nk - \frac{k^2}{2} + 7k + k^2 < n\log m + n\log n + 2k + 2k\log n + k\log m\\
+%   &6n + \frac{k}{2} + \frac{k^2}{2} + nk + 5k < n\log m + n\log n + 2k\log n + k\log m\\
+%   &6(10^4) + \frac{k}{2} + \frac{k^2}{2} + (10^4)k + 5k < (10^4)\log (10^7) + (10^4)\log (10^4) + 2k\log (10^4) + k\log (10^7)
+% \end{align*}
+
+Subbing in we get:
+
+\begin{align*}
+  10000k + k^2 < 10000\log_2 (10000*10000000) + k\log_2 (10000*10000000)\\
+\end{align*}
 
 \item Google actually uses $k\approx 1000$ and then applies a post-processing stage to produce the top ten
 results. Which solution would you use in the worst case knowing again that $m\approx 10^7$, and $n\approx 10^4$ assuming that the actual
 running time is a small constant times the number of operations you computed?
 
-I would use the heap solution as for any values of k greater than 5, Marc's solution is going to perform worse than the heap solution.
+Solving the inequality above results in the following:
+
+\begin{align*}
+  &10000k + k^2 < 10000\log_2 (10000*10000000) + k\log_2 (10000*10000000)\\
+  &k \leq 36
+\end{align*}
+
+I would use the heap solution as for any values of k greater than 36, since past 36 Marc's solution is going to perform worse than the heap solution. In Google's case, I would definitely use the heap solution.
 \end{enumerate}
-
-
-
 
 \end{document}
