@@ -200,14 +200,14 @@ the heap stability cannot be ensured. Heapsort therefore is not a stable sorting
 
   [1$_a$,1$_b$,1$_c$,2,4]
 
-  Then i = 3, j = 2, so swap A[0] and A[j] since j $\leq$ i
+  Then i = 3, j = 2, so swap A[0] and A[j] since j $<$ i
 
   [1$_c$,1$_b$,1$_a$,2,4] returning j = 2
 
   recursively call quicksort on [1$_c$, 1$_b$] and [2,4]
 
-  for [1$_c$, 1$_b$], i = 2, j = 1, j $\leq$ i so swap A[0], A[j], to get 1$_b$, 1$_c$ and returning j = 1
-  \\for [2,4], i = 1, j = 0, j $\leq$ i, swap A[0], A[j], which remains 2,4, returning j = 0
+  for [1$_c$, 1$_b$], i = 2, j = 1, $j < i$ so swap A[0], A[j], to get 1$_b$, 1$_c$ and returning j = 1
+  \\for [2,4], i = 1, j = 0, j $<$ i, swap A[0], A[j], which remains 2,4, returning j = 0
 
   Now quick sort will return since all partitions are of size 1 and the sorted array is:
 
@@ -318,7 +318,7 @@ If k $\leq \frac{n}{\log n}$, then the total complexity of this algorithm would 
   &= O(n) + O(n) + O(\frac{n}{\log n}\log \frac{n}{\log n})\\
   &= O(n) + O(n) + O(\frac{n}{\log n}\log (\log n - \log \log n))\\
   &= O(n) + O(n) + O(n) - O(n\frac{\log \log n}{\log n})\\
-  &= 3O(n) - O(1)\\
+  &= 3O(n) - O(n)\\
   &\therefore T(n) \in O(n)
 \end{align*}
 
@@ -340,6 +340,8 @@ other team winning.
   \item \label{pb5q1}[6 marks] Give a precise (not big-Omega) lower bound for
   the number of contests required in the worst case to determine which players
   are strong and which are weak.
+
+  The worst case is where every player but the last is the same. Begin with player one and compare them with every other player to determine player one. Iterating over every player, there is guaranteed to be someone who will not tie with player one, in this case the last one. In this worst case it would take n-1 comparisons of the first player with the others. After player one has been determined, everyone else is known since they have already been compared with player one. Therefore the precise lower bound for the number of contests in the worst case would be n-1.
   
   \item \label{pb5q2}[7 marks] Describe an algorithm called
   \texttt{find-strong} to determine the strong players when $n = 4$. Use the
@@ -352,6 +354,33 @@ other team winning.
   Give an exact worst-case analysis of the number of contests required in your
   algorithm. For full marks, this should match exactly the lower bound from
   Part \ref{pb5q1} when $n = 4$.
+
+  \begin{verbatim}
+    find-strong(P)
+      firstPlayer = unknown
+      A= empty array of strong players
+      B= empty array of players that were tied
+      for i = 2 to n do
+        if contest({P1, Pi}) == "tie"
+          if firstPlayer == unknown
+            B.push(Pi)
+          else if firstPlayer == strong
+            A.push(Pi)
+        else if contest({P1, Pi}) == "first wins"
+          if firstPlayer == unknown
+            firstPlayer = strong
+            A.push(P0)
+            A = A + B
+        else if contest({P1, Pi}) == "second wins"
+          if firstPlayer == unknown
+            firstPlayer = weak
+          A.push(Pi)
+      return A
+  \end{verbatim}
+
+  Setting up array P for our worst case when n=4, P=[1,1,1,0] where 1 is strong and 0 is weak
+
+  The algorithm woulds step through, contest P1 with P2, resulting in a tie and pushing P2 to the unknown bucket. It would repeat this for P3, and then contest P1 with P4, determining that P1, P2, and P3 must all be strong, returning these three players. This took n-1 = 4-1 comparisons, matching the lower bound from the previous question.
   
   \item {[}7 marks] Describe an algorithm to determine the strong and weak
   players, for any $n$. Use the names $P_1, P_2, \ldots, P_n$ and the contest
@@ -359,40 +388,44 @@ other team winning.
   optimal, meaning that the big-O cost should match the lower bound from Part
   \ref{pb5q1}.
 
-  The algorithm works by taking all players and then holding contests between teams of size 1 comprised of the first player and the last player, then another competition between the second player and the second last player, and so on, working inwards from both ends of all the players.\\\\
+  The algorithm works by taking the first player and comparing him to all other players. The big-O cost T(n) for this algorithm would be:
 
-  the algorithm can then be defined as:
+  \begin{align*}
+    &T(n) = \sum_{i=2}^n c\\
+    &= (n+1-2)c\\
+    &= (n-1)c
+  \end{align*}
+
+  Where c is the constant complexity of one contest in combination with a fixed number of comparisons and assignments to the arrays.\\
+  By the definition of big-O this would be O(n-1) complexity, matching the lower bound of n-1 from the worst case above.
+
+  the algorithm is defined as:
 
   \begin{verbatim}
-    A = array of strong players
-    B = array of weak players
-    C = array of unknown players
     find-strong(P)
-      for i = 0 to ceil(Pn/2)
-        if contest({Pi, Pn-1-1}) == "first wins"
-          move(Pi, A)
-          move (Pn-1-i, B)
-        else if contest({Pi, Pn-1-i}) == "second wins"
-          move(Pi, B)
-          move(Pn-1-i, A)
-        else
-          if contest({Pi, C.first}) == "first wins"
-            move((Pi, Pn-1-i), A)
-            B = B + C
-            C = empty
-          else if contest({Pi, C.first}) == "second wins"
-            move(Pi, Pn-1-i, B)
-            A = A + C
-            C = empty
+      firstPlayer = unknown
+      A= empty array of strong players
+      B= empty array of players that were tied
+      C= empty array of weak players
+      for i = 2 to n do
+        if contest({P1, Pi}) == "tie"
+          if firstPlayer == unknown
+            B.push(Pi)
+          else if firstPlayer == strong
+            A.push(Pi)
           else
-            move((Pi, Pn-1-i), C)
-      if C != empty
-        if contest({C.first, A.first}) == "tie"
-          A = A + C
-        else
-          B = B + C
-        C = empty
-
+            C.push(Pi)
+        else if contest({P1, Pi}) == "first wins"
+          if firstPlayer == unknown
+            firstPlayer = strong
+            A.push(P1)
+            A = A + B
+        else if contest({P1, Pi}) == "second wins"
+          if firstPlayer == unknown
+            firstPlayer = weak
+            C.push(P1)
+            C = C + B
+          A.push(Pi)
   \end{verbatim}
 \end{enumerate}
 
