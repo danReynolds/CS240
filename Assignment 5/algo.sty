@@ -1,0 +1,53 @@
+\newcounter{algorithmeligne}
+\newcommand{\instr}[1]{%\underline
+                        {\bf #1}}
+\newcommand{\nomproc}[1]{{\rm\bf #1}}
+\newenvironment{algorithme}
+        {
+        \setcounter{algorithmeligne}{0}
+
+        \newcommand{\ITEM}{
+                \stepcounter{algorithmeligne}
+                {\footnotesize \arabic{algorithmeligne}.}\>
+                }
+        \newcommand{\lign}{\ITEM}
+        \begin{center}
+        \begin{tabular}{|c|}
+        \hline
+        \begin{minipage}{1cm}
+        \small
+        \,
+        \ \ \\[-11mm]
+        \begin{tabbing}
+\hskip1cm\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\\\kill 
+        }
+        {
+        \end{tabbing}
+        \ \ \\[-8mm]
+        \end{minipage}
+        \\\hline
+        \end{tabular}
+        \end{center}
+        }
+\newcommand{\POUR}{\instr{Pour}}
+\newcommand{\TOUT}{\instr{Tout}}
+\newcommand{\TOUTE}{\instr{Toute}}
+\newcommand{\FAIRE}{\instr{Faire}}
+\newcommand{\FINPOUR}{\instr{Fin Pour}}
+\newcommand{\FINTANTQUE}{\instr{Fin Tant que}}
+\newcommand{\TANTQUE}{\instr{Tant que}}
+\newcommand{\REPETER}{\instr{R?p?ter}}
+\newcommand{\JUSQUACEQUE}{\instr{Jusqu'? ce que}}
+\newcommand{\RETOURNE}{\instr{Retourne}}
+\newcommand{\LOCAL}{\instr{Local}}
+\newcommand{\ET}{\instr{Et}}
+\newcommand{\OU}{\instr{Ou}}
+\newcommand{\SI}{\instr{Si}}
+\newcommand{\ALORS}{\instr{Alors}}
+\newcommand{\SINON}{\instr{Sinon}}
+\newcommand{\FINSI}{\instr{Fin Si}}
+\newcommand{\FINPROC}{\instr{Fin de la Proc?dure}}
+\newcommand{\FINFONC}{\instr{Fin}}
+
+\newcommand{\PROCEDURE}[1]{\fbox{\instr{Proc?dure \nomproc{#1}}}}
+\newcommand{\FONCTION}[1]{\fbox{\instr{Fonction \nomproc{#1}}}}
