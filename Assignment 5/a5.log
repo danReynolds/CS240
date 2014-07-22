@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2014.4.19)  22 JUL 2014 11:50
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2014.4.19)  22 JUL 2014 17:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -594,7 +594,11 @@ File: tikzlibrarychains.code.tex 2008/02/27 v2.10 (rcs-revision 1.5)
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
 ioning.code.tex
 File: tikzlibrarypositioning.code.tex 2008/10/06 v2.10 (rcs-revision 1.7)
-)) (./a5.aux)
+)) (./a5.aux
+
+LaTeX Warning: Label `kmp' multiply defined.
+
+)
 \openout1 = `a5.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
@@ -921,20 +925,13 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no ] in font nullfont!
-Missing character: There is no [ in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no ] in font nullfont!
 
-Underfull \hbox (badness 10000) in paragraph at lines 244--252
+Underfull \hbox (badness 10000) in paragraph at lines 242--250
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
 
  []
 
@@ -944,12 +941,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 253--254
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 255--256
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 255--256
+Underfull \hbox (badness 10000) in paragraph at lines 253--254
 
  []
 
@@ -977,11 +969,6 @@ Missing character: There is no m in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no : in font nullfont!
-
-Overfull \hbox (16.27402pt too wide) in paragraph at lines 345--346
-[][] 
- []
-
 Missing character: There is no I in font nullfont!
 Missing character: There is no f in font nullfont!
 Missing character: There is no y in font nullfont!
@@ -1003,109 +990,105 @@ Missing character: There is no m in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no : in font nullfont!
-[4]
+ [4]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 399.
+(hyperref)                removing `math shift' on input line 373.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 399.
+(hyperref)                removing `math shift' on input line 373.
 
 [5] (./kdtreeExample.pdf_tex
 File: kdtreeExample.pdf Graphic file (type QTm)
  <use  "kdtreeExample.pdf" >) [6]
 File: 5a.jpg Graphic file (type QTm)
  <use  "5a.jpg" >
-Overfull \hbox (13.94182pt too wide) in paragraph at lines 484--486
+Overfull \hbox (13.94182pt too wide) in paragraph at lines 458--460
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 491--492
+Underfull \hbox (badness 10000) in paragraph at lines 465--466
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 491--492
+Underfull \hbox (badness 10000) in paragraph at lines 465--466
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 493--494
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 493--494
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 507--508
+Underfull \hbox (badness 10000) in paragraph at lines 481--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 507--508
+Underfull \hbox (badness 10000) in paragraph at lines 481--482
 
  []
 
-[8]
-Missing character: There is no I in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no ' in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no : in font nullfont!
- [9]
+[8] [9] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 621--622
 
-LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 614
-.
+ []
 
-[10]
-
-LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 620
-.
-
-
-LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 620
-.
-
-
-LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 620
-.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 632.
 [11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 632.
+Underfull \hbox (badness 10000) in paragraph at lines 649--651
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 649--651
+
+ []
+
+[12]
+
+LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 695
+.
+
+
+LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 701
+.
+
+
+LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 701
+.
+
+
+LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 701
+.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 713.
+[13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 713.
  (./a5.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 632.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 632.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 632.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 713.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 713.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 713.
  ) 
 Here is how much of TeX's memory you used:
- 21720 strings out of 495658
- 369078 string characters out of 6187951
- 804771 words of memory out of 5000000
- 24610 multiletter control sequences out of 15000+600000
- 15764 words of font info for 62 fonts, out of 8000000 for 9000
+ 20717 strings out of 495658
+ 350443 string characters out of 6187951
+ 639913 words of memory out of 5000000
+ 23606 multiletter control sequences out of 15000+600000
+ 16101 words of font info for 64 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  58i,15n,92p,895b,1299s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on a5.pdf (11 pages).
+Output written on a5.pdf (13 pages).

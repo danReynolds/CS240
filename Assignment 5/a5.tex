@@ -211,7 +211,6 @@ $-\infty$ at level 0, go right\\
     % The nodes of the skip list are drawn in a matrix
     % \\ delimits the rows while & delimits the columns
     \matrix[row sep=3mm, column sep=5mm]{
-      \nodelabel{4}; & \snode{4a}{-\infty}; & & & & & & & & \snode{4i}{+\infty};\\
       \nodelabel{3}; & \snode{3a}{-\infty}; & & & & & & & & \snode{3i}{+\infty};\\
       \nodelabel{2}; & \snode{2a}{-\infty}; & & & \snode{2d}{47}; & \snode{2e}{51}; & & & \snode{2h}{68}; & \snode{2i}{+\infty};\\
       \nodelabel{1}; & \snode{1a}{-\infty}; & & & \snode{1d}{47}; & \snode{1e}{51}; & \snode{1f}{53}; & & \snode{1h}{68}; & \snode{1i}{+\infty};\\
@@ -224,7 +223,6 @@ $-\infty$ at level 0, go right\\
       [start chain] \chainin(1a); \chainin(1d) [join]; \chainin(1e) [join]; \chainin(1f) [join]; \chainin(1h) [join]; \chainin(1i) [join];
       [start chain] \chainin(2a); \chainin(2d) [join]; \chainin(2e) [join]; \chainin(2h) [join]; \chainin(2i) [join];
       [start chain] \chainin(3a); \chainin(3i) [join];
-      [start chain] \chainin(4a); \chainin(4i) [join];
 
     }
     {
@@ -278,68 +276,44 @@ darkest shade of gray.
   \includegraphics[width=3in]{QuadTreePic}
 \end{center}
 
-\begin{tikzpicture}[thick,scale=0.7, every node/.style={scale=0.6}]
+\begin{tikzpicture}[thick,scale=1.0, every node/.style={scale=0.6}]
 \tikzset{execute at begin node=\strut}
 
 \\If you can't see, zoom in:\\
 
 
 \Tree [ .o 
-        [ .o 
-          [ .o 
-            [ 2 2 2 2 ]
-          ] 
+        [ .o
           [ .o
-            [ 3 3 3 3 ]
-          ] 
-          [ .o
-            [ 2 2 2 2 ] 
-          ] 
-          [ .o 
-            [ 2 2 2 2 ] 
+            2, 3, 2, 2
           ] 
         ]
-        [ .o 
-          [ .o 
-            [ 3 1 2 2 ]
-          ] 
+        [ .o
           [ .o
-            [ 1 1 1 1 ]
-          ] 
-          [ .o
-            [ 2 3 1 3 ] 
-          ] 
-          [ .o 
-            [ 1 3 2 2 ] 
-          ] 
+            [ .o
+              3, 1, 2, 2
+            ]
+            [ .o
+              1, 1, 1, 1
+            ]
+            [ .o
+              2, 3, 1, 3
+            ]
+            [ .o
+              1, 3, 2, 2
+            ]
+          ]
         ]
-        [ .o 
-          [ .o 
-            [ 1 1 1 1 ]
-          ] 
-          [ .o
-            [ 1 1 1 1 ]
-          ] 
-          [ .o
-            [ 1 1 1 1 ] 
-          ] 
-          [ .o 
-            [ 1 1 1 1 ] 
-          ] 
+        [ 1
         ]
-        [ .o 
-          [ .o 
-            [ 2 2 2 2 ]
-          ] 
+        [ .o
+          2, 3
           [ .o
-            [ 3 3 3 3 ]
-          ] 
+            3, 1, 2, 2
+          ]
           [ .o
-            [ 3 1 2 2 ] 
-          ] 
-          [ .o 
-            [ 3 3 1 3 ] 
-          ] 
+            3, 3, 1, 3
+          ]
         ]
       ] 
 \end{tikzpicture}
@@ -349,7 +323,7 @@ quad tree has height exactly 9.  Give the (x,y) coordinates of the
 three points and show the quad tree.  (Do not give the plane
 partition.)
 
-points: (1,1), (2,2), (1024,1024)
+points: (1,1), (2,2), (512,512)
 
 \begin{tikzpicture}[thick,scale=1.0, every node/.style={scale=0.6}]
 \tikzset{execute at begin node=\strut}
@@ -359,7 +333,7 @@ points: (1,1), (2,2), (1024,1024)
 
 \Tree [ .o 
         [
-          {} (1024,1024) {}
+          {} (512,512) {}
           [ .o
             {} {} {}
             [ .o
@@ -521,15 +495,6 @@ Therefore in 2-dimensions, the modified range counting query can be performed in
 \subsection{Tries [3+3+3+3+3=15 marks]}
 \begin{itemize}
 \part{a} Construct a trie on the following eight strings (include edge labels for clarity):\\ 000000, 1111111, 1111100, 011, 11011, 001111, 001100, 000100.
-
-\begin{tikzpicture}[thick,scale=1.0, every node/.style={scale=0.6}]
-\tikzset{execute at begin node=\strut}
-
-\\If you can't see, zoom in:\\
-
-\Tree [ .o ]
-\end{tikzpicture}
-
 \part{b} Draw the compressed trie equivalent to the trie in the previous part.
 \part{c} Draw the compressed trie of the previous part after inserting 00011.
 \part{d} Draw the compressed trie of part (b) after inserting 111011.
@@ -543,8 +508,71 @@ Therefore in 2-dimensions, the modified range counting query can be performed in
 failure array:
 \begin{enumerate}
 \item $P = ${\tt~she sells seashells}
+
+\begin{tabular}{c|l|l|c}
+  \hline
+  \textbf{j} & \textbf{P[0 ... j]} & \textbf{P[1 ... j]} & \textbf{F[j]}\\
+  \hline
+  0 & s & - & 0\\
+  1 & sh & h & 0 \\
+  2 & she & he & 0 \\
+  3 & she\_ & he\_ & 0 \\
+  4 & she\_s & he\_s & 1 \\
+  5 & she\_se & he\_se & 0 \\
+  6 & she\_sel & he\_sel & 0 \\
+  7 & she\_sell & he\_sell & 0 \\
+  8 & she\_sells & he\_sells & 1 \\
+  9 & she\_sells\_ & he\_sells\_ & 0 \\
+  10 & she\_sells\_s & he\_sells\_s & 1 \\
+  11 & she\_sells\_se & he\_sells\_se & 0 \\
+  12 & she\_sells\_sea & he\_sells\_sea & 0 \\
+  13 & she\_sells\_seas & he\_sells\_seas & 1 \\
+  14 & she\_sells\_seash & he\_sells\_seash & 2 \\
+  15 & she\_sells\_seashe & he\_sells\_seashe & 3 \\
+  16 & she\_sells\_seashel & he\_sells\_seashel & 0 \\
+  17 & she\_sells\_seashell & he\_sells\_seashell & 0 \\
+  18 & she\_sells\_seashells & he\_sells\_seashells & 1
+\end{tabular}
+
 \item $P = ${\tt~abracadabracapabra}
+
+\begin{tabular}{c|l|l|c}
+  \hline
+  \textbf{j} & \textbf{P[0 ... j]} & \textbf{P[1 ... j]} & \textbf{F[j]}\\
+  \hline
+  0 & a & - & 0 \\
+  1 & ab & b & 0 \\
+  2 & abr & br & 0 \\
+  3 & abra & bra & 1 \\
+  4 & abrac & brac & 0 \\
+  5 & abraca & braca & 1 \\
+  6 & abracad & bracad & 0 \\
+  7 & abracada & bracada & 1 \\
+  8 & abracadab & bracadab & 2 \\
+  9 & abracadabr & bracadabr & 3 \\
+  10 & abracadabra & bracadabra & 4 \\
+  11 & abracadabrac & bracadabrac & 0 \\
+  12 & abracadabraca & bracadabraca & 1 \\
+  13 & abracadabracap & bracadabracap & 0 \\
+  14 & abracadabracapa & bracadabracapa & 1 \\
+  15 & abracadabracapab & bracadabracapab & 2 \\
+  16 & abracadabracapabr & bracadabracapabr & 3 \\
+  17 & abracadabracapabra & bracadabracapabra & 4 \\
+\end{tabular}
+
 \item $P = ${\tt~ababac}
+\begin{tabular}{c|l|l|c}
+  \hline
+  \textbf{j} & \textbf{P[0 ... j]} & \textbf{P[1 ... j]} & \textbf{F[j]}\\
+  \hline
+  0 & a & - & 0 \\
+  1 & ab & b & 0 \\
+  2 & aba & ba & 1 \\
+  3 & abab & bab & 2 \\
+  4 & ababa & baba & 3 \\
+  5 & ababac & babac & 0 \\
+\end{tabular}
+
 \end{enumerate}
 \part{b}
 Show how to search for pattern $P=$\texttt{ababac} in the text $T=$\texttt{abcaabaabababacabcaa} using the KMP algorithm. Indicate in a table such as Table \ref{kmp} which characters of $P$ were compared with which characters of $T$. Follow the example on slide~25 in module~8. Place each character of $P$ in the column of the compared-to character of $T$.  Put brackets around the character if an actual comparison was not performed. You may not need all space in the table.
@@ -558,19 +586,19 @@ Show how to search for pattern $P=$\texttt{ababac} in the text $T=$\texttt{abcaa
 a&b&c&a&a&b&a&a&b&a&b&a&b&a&c&a&b&c&a&a\\
 \hline
 \hline
-&&&&&&&&&&&&&&&&&&&\\
+a&b&a&&&&&&&&&&&&&&&&&\\
 \hline
-&&&&&&&&&&&&&&&&&&&\\
+&&a&&&&&&&&&&&&&&&&&\\
 \hline
-&&&&&&&&&&&&&&&&&&&\\
+&&&a&b&&&&&&&&&&&&&&&\\
 \hline
-&&&&&&&&&&&&&&&&&&&\\
+&&&&a&b&a&b&&&&&&&&&&&&\\
 \hline
-&&&&&&&&&&&&&&&&&&&\\
+&&&&&&(a)&b&&&&&&&&&&&&\\
 \hline
-&&&&&&&&&&&&&&&&&&&\\
+&&&&&&&a&b&a&b&a&c&&&&&&&\\
 \hline
-&&&&&&&&&&&&&&&&&&&\\
+&&&&&&&&&(a)&(b)&(a)&b&a&c&&&&&\\
 \hline
 &&&&&&&&&&&&&&&&&&&\\
 \hline
@@ -589,14 +617,67 @@ a&b&c&a&a&b&a&a&b&a&b&a&b&a&c&a&b&c&a&a\\
 \begin{itemize}
 \part{a}
 Compute the last-occurrence function $L$ for the pattern $P =$\texttt{~aabaab}.\\ Give your answer as a table as shown on slide 32 of module 8.
+
+for each c in the alphabet\\
+
+\begin{tabular}{c|c|c|}
+  \hline
+  c & a & b\\
+  \hline
+  L(c) & 4 & 5\\
+  \hline
+\end{tabular}
+
 \part{b}
 Compute the suffix skip array $S$ for the pattern $P =$\texttt{~aabaab}. \\Give your answer as a table as shown on slide 33 of module 8.
+
+\begin{tabular}{c|c|c|c|c|c|c|}
+  \hline
+  i & 0 & 1 & 2 & 3 & 4 & 5\\
+  \hline
+  P(i) & a & a & b & a & a & b\\
+  \hline
+  S(i) & -6 & -2 & -1 & -3 & -2 & 4\\
+  \hline
+
+\end{tabular}
+
 \part{c} Trace through the execution of Boyer-Moore algorithm for 
 \begin{align*}
 P &=& \tt{aabaab}\\
 T &=& \tt{aaababdaabaaa}
 \end{align*}
-Indicate clearly the sequence of characters compared. Whenever a mismatch occurs, show clearly how the indices to $T$ and $P$ are computed.
+Indicate clearly the sequence of characters compared. Whenever a mismatch occurs, show clearly how the indices to $T$ and $P$ are computed.\\\\
+
+\begin{enumerate}
+\item Row 0: T[3] != P[3]. According to the suffix array, S[3] = -3 so either put P[-3], a at this spot, which would be a shift of 4 to the right, or using the last occurrence array put P[4] here as index 5 is the last occurrence of b, which would shift it 2 in the wrong direction. We therefore use the suffix array option and shift 4 right.
+
+\item Row 1: T[11] != P[5]. According to the suffix array, S[5] = 4 so either put P[4] at this spot, which would be a shift of 1 to the right, or using the last occurrence array put P[4] here as index 4 is the last occurrence of an a. Either one of these options shifts the pattern over one to the right.
+
+\item Row 2: T[12] != P[5]. According to the suffix array, S[5] = 4 so either put P[4] at this spot, which would be a shift of 1 to the right, or using the last occurrence array put P[4] here as index 4 is the last occurrence of an a. Either one of these options shifts the pattern over one to the right.
+\end{enumerate}
+
+
+
+\begin{table}[!ht]
+\Large{
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a&a&a&b&a&b&d&a&a&b&a&a&a\\
+\hline
+&&&a&a&b&&&&&&&\\
+\hline
+&&&&&&&&&&&b&\\
+\hline
+&&&&&&&&&&&&b\\
+
+\hline
+%\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots\\
+\end{tabular}
+\end{center}}
+\caption{Table for problem 3(b).}\label{kmp}
+\end{table}
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
