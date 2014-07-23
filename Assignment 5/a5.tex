@@ -443,6 +443,15 @@ In other words, if you are splitting the region with a
 vertical line according to $x$-coordinate, 
 explain how you produce the two sets of points in each
 region sorted according to their $y$-coordinate in time $O(k)$.
+
+After preprocessing, my algorithm would have two sets of the same points, a set of points sorted by x-coordinates, and a set of points sorted by y-coordinates. Since my x-coordinate set is already sorted, I can just take the middle element in O(1) time and determine its x-value.
+
+I then partition my x-coordinate set into two new sets, one consisting of elements less than the x-coordinate of this middle element, and the other set of elements greater than my middle element's x-coordinate. This takes O(k) time as there are O(k) comparisons to see whether each element is less than or greater than the middle.\\
+
+I can do the same thing with my set that is sorted by y-coordinate, and am able to get two new sets sorted by y-coordinate, one with only elements with an x-coordinate less than the middle element's x-coordinate, and the other with only elements with a greater x-coordinate. This would again only cost O(k) for the same reason as described above.\\
+
+I now have the sets of points in each region sorted by both x and y coordinates and can recurse on each region with the x and y sets less than the middle and the x and y sets greater than the middle. This process I've described follows the complexity given of $$T(k) \leq T(\lfloor k/2\rfloor) + T(\lceil k/2 \rceil-1)+ O(k)$$ since I've shown it is O(k) to get the x and y coordinate sets and we then recurse on those sets, one of which would be size $\lfloor k/2 \rfloor$ and the other size $\lceil k/2 \rceil -1$ since we have removed the middle element.
+
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -494,11 +503,41 @@ Therefore in 2-dimensions, the modified range counting query can be performed in
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Tries [3+3+3+3+3=15 marks]}
 \begin{itemize}
+\newpage
 \part{a} Construct a trie on the following eight strings (include edge labels for clarity):\\ 000000, 1111111, 1111100, 011, 11011, 001111, 001100, 000100.
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=170mm]{6a.jpg}
+\label{overflow}
+\end{figure}
+\newpage
 \part{b} Draw the compressed trie equivalent to the trie in the previous part.
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=170mm]{6b.jpg}
+\label{overflow}
+\end{figure}
+\newpage
 \part{c} Draw the compressed trie of the previous part after inserting 00011.
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=170mm]{6c.jpg}
+\label{overflow}
+\end{figure}
+\newpage
 \part{d} Draw the compressed trie of part (b) after inserting 111011.
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=170mm]{6d.jpg}
+\label{overflow}
+\end{figure}
+\newpage
 \part{e} Draw the compressed trie of part (b) after deleting 001100.
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=170mm]{6e.jpg}
+\label{overflow}
+\end{figure}
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -686,6 +725,12 @@ Draw the suffix tree corresponding to the text
 $T =$\verb[ quisquam[.  Use the recipe of Slide~37 of Module~8.
 Your suffix tree should look like the example on Slide~38.
 Children of a node should be ordered alphabetically.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=170mm]{9.jpg}
+\label{overflow}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Lempel-Ziv compression [8+1+1+1=11 marks]} 

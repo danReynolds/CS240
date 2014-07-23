@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2014.4.19)  22 JUL 2014 17:38
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2014.4.19)  22 JUL 2014 22:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -596,6 +596,12 @@ ioning.code.tex
 File: tikzlibrarypositioning.code.tex 2008/10/06 v2.10 (rcs-revision 1.7)
 )) (./a5.aux
 
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
 LaTeX Warning: Label `kmp' multiply defined.
 
 )
@@ -1002,93 +1008,144 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 [5] (./kdtreeExample.pdf_tex
 File: kdtreeExample.pdf Graphic file (type QTm)
  <use  "kdtreeExample.pdf" >) [6]
+Underfull \hbox (badness 10000) in paragraph at lines 449--450
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 451--452
+
+ []
+
 File: 5a.jpg Graphic file (type QTm)
- <use  "5a.jpg" >
-Overfull \hbox (13.94182pt too wide) in paragraph at lines 458--460
+<use  "5a.jpg" >
+Overfull \hbox (13.94182pt too wide) in paragraph at lines 467--469
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 465--466
+Underfull \hbox (badness 10000) in paragraph at lines 474--475
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 465--466
+Underfull \hbox (badness 10000) in paragraph at lines 474--475
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 467--468
+Underfull \hbox (badness 10000) in paragraph at lines 476--477
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 467--468
+Underfull \hbox (badness 10000) in paragraph at lines 476--477
 
  []
 
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 481--482
+[7] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 490--491
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 481--482
+Underfull \hbox (badness 10000) in paragraph at lines 490--491
 
  []
 
-[8] [9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 621--622
+[9]
+File: 6a.jpg Graphic file (type QTm)
+ <use  "6a.jpg" >
+Overfull \hbox (13.94182pt too wide) in paragraph at lines 510--512
+ [][] 
+ []
 
+[10]
+File: 6b.jpg Graphic file (type QTm)
+ <use  "6b.jpg" >
+Overfull \hbox (13.94182pt too wide) in paragraph at lines 517--519
+ [][] 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 649--651
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 649--651
-
+File: 6c.jpg Graphic file (type QTm)
+ <use  "6c.jpg" >
+Overfull \hbox (13.94182pt too wide) in paragraph at lines 524--526
+ [][] 
  []
 
 [12]
+File: 6d.jpg Graphic file (type QTm)
+ <use  "6d.jpg" >
+Overfull \hbox (13.94182pt too wide) in paragraph at lines 531--533
+ [][] 
+ []
 
-LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 695
-.
-
-
-LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 701
-.
-
-
-LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 701
-.
-
-
-LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 701
-.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 713.
 [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 713.
+File: 6e.jpg Graphic file (type QTm)
+ <use  "6e.jpg" >
+Overfull \hbox (13.94182pt too wide) in paragraph at lines 538--540
+ [][] 
+ []
+
+[14] [15]
+Underfull \hbox (badness 10000) in paragraph at lines 660--661
+
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 688--690
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 688--690
+
+ []
+
+[17]
+File: 9.jpg Graphic file (type QTm)
+ <use  "9.jpg" >
+Overfull \hbox (13.94182pt too wide) in paragraph at lines 731--733
+ [][] 
+ []
+
+
+LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 740
+.
+
+
+LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 746
+.
+
+
+LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 746
+.
+
+
+LaTeX Warning: Command \textvisiblespace invalid in math mode on input line 746
+.
+
+[18]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 758.
+ [19]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 758.
  (./a5.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 713.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 713.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 758.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 758.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 713.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 758.
  ) 
 Here is how much of TeX's memory you used:
- 20717 strings out of 495658
- 350443 string characters out of 6187951
+ 20729 strings out of 495658
+ 350513 string characters out of 6187951
  639913 words of memory out of 5000000
- 23606 multiletter control sequences out of 15000+600000
+ 23612 multiletter control sequences out of 15000+600000
  16101 words of font info for 64 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  58i,15n,92p,895b,1299s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on a5.pdf (13 pages).
+Output written on a5.pdf (19 pages).
